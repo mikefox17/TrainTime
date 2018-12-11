@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+      integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:300"
+      rel="stylesheet"
+    />
+    <style>
+      /* Some added styling to bootstrap, found some cool flat colors from the google materialize documentation, Also using a custom google font */
+      body {
+        font-family: "Roboto", sans-serif;
+      }
+
+      .jumbotron {
+        margin-top: 10px;
+
+        background-image: url("images/train.png");
+      }
+
+      #h1 {
+        background-color: #9cc9f5;
+        font-weight: bolder;
+      }
+
+      #h2 {
+        background-color: #afd4ab;
+        font-weight: bolder;
+      }
+
+      #add-train-btn {
+        background-color: #d36f70;
+        border: #d36f70;
+        font-weight: bolder;
+      }
+
+      #p1 {
+        font-weight: bolder;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <!--
+        Jumbotron to draw attention to the user describing what the app does
+      -->
+      <div class="jumbotron text-light">
+        <h1 class="display-3">Train Scheduler!</h1>
+        <p class="lead" id="p1">
+          This is a top-notch train application designed to show users expected
+          train arrivals down to the exact minute!
+        </p>
+        <hr class="my-2" />
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <!--
+            Current Train Schedule, firebase will push the data to this table
+          -->
+          <div class="card mb-4">
+            <div class="card-header" id="h1">Current Train Schedule</div>
+            <div class="card-body">
+              <table class="table table-sm table-hover" id="train-table">
+                <thead>
+                  <tr>
+                    <th scope="col">Train Name</th>
+                    <th scope="col">Destination</th>
+                    <th scope="col">Frequency</th>
+                    <th scope="col">Next Arrical</th>
+                    <th scope="col">Minutes Away</th>
+                  </tr>
+                </thead>
+                <tbody></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12">
+          <!-- Add new train -->
+          <div class="card mb-4">
+            <div class="card-header" id="h2">Add Train</div>
+            <div class="card-body">
+              <!-- Form to collect data about the train they want to add -->
+              <form>
+                <div class="form-group">
+                  <label for="train-name-input">Train Name</label>
+                  <input
+                    class="form-control"
+                    id="train-name-input"
+                    type="text"
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="destination-input">Destination</label>
+                  <input
+                    class="form-control"
+                    id="destination-input"
+                    type="text"
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="first-input">First Train Time</label>
+                  <input class="form-control" id="first-input" type="text" />
+                </div>
+                <div class="form-group">
+                  <label for="freq-input">Frequency</label>
+                  <input class="form-control" id="freq-input" type="text" />
+                </div>
+                <!--
+                  Submit button with an onclick event to grab the users inputs
+                -->
+                <button class="btn btn-primary float-left" id="add-train-btn">
+                  Submit
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script
+    src="https://code.jquery.com/jquery-3.3.1.min.js"
+    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"
+  ></script>
+  <script src="https://www.gstatic.com/firebasejs/5.7.0/firebase.js"></script>
+  <script src="javascript/app.js"></script>
+</html>
