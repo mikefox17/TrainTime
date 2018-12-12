@@ -23,7 +23,6 @@
 
       .jumbotron {
         margin-top: 10px;
-
         background-image: url("images/train.png");
       }
 
@@ -52,7 +51,7 @@
   <body>
     <div class="container">
       <!--
-        Jumbotron to draw attention to the user describing what the app does
+        Jumbotron to draw attention to the user with describtion of what the app does
       -->
       <div class="jumbotron text-light">
         <h1 class="display-3">Train Scheduler!</h1>
@@ -76,7 +75,7 @@
                     <th scope="col">Train Name</th>
                     <th scope="col">Destination</th>
                     <th scope="col">Frequency</th>
-                    <th scope="col">Next Arrical</th>
+                    <th scope="col">Next Arrival</th>
                     <th scope="col">Minutes Away</th>
                   </tr>
                 </thead>
@@ -112,11 +111,13 @@
                   />
                 </div>
                 <div class="form-group">
-                  <label for="first-input">First Train Time</label>
+                  <label for="first-input"
+                    >First Train Time (HH:mm Military Time</label
+                  >
                   <input class="form-control" id="first-input" type="text" />
                 </div>
                 <div class="form-group">
-                  <label for="freq-input">Frequency</label>
+                  <label for="freq-input">Frequency (mins)</label>
                   <input class="form-control" id="freq-input" type="text" />
                 </div>
                 <!--
@@ -132,6 +133,7 @@
       </div>
     </div>
   </body>
+  <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
   <script
     src="https://code.jquery.com/jquery-3.3.1.min.js"
     integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
