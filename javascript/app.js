@@ -91,4 +91,14 @@ database.ref().on("child_added", function(childSnapshot) {
 
   var firstTrainTime = moment.unix(firstTrain).format("HH:mm");
   console.log(firstTrainTime);
+
+  var newRow = $("<tr>").append(
+    $("<td>").text(trainName),
+    $("<td>").text(trainDestination),
+    $("<td>").text(firstTrainTime),
+    $("<td>").text(trainFrequency)
+  );
+
+  // Append the new row to the table
+  $("#train-table > tbody").append(newRow);
 });
