@@ -10,6 +10,7 @@ var config = {
 firebase.initializeApp(config);
 
 var database = firebase.database();
+
 //consolelog to check if database is working
 console.log(database + "working");
 
@@ -76,11 +77,25 @@ $("#add-train-btn").on("click", function(event) {
 //refers to the FB database
 database.ref().on("child_added", function(childSnapshot) {
   console.log(childSnapshot.val());
-
+  //vars set equal to the firebase snapshot values
   var trainName = childSnapshot.val().name;
   var trainDestination = childSnapshot.val().destination;
   var firstTrain = childSnapshot.val().TrainTime;
   var trainFrequency = childSnapshot.val().frequency;
+  //Var to do math on how manhy minutes away the bext train will be
+  var trainTimeConverted = moment(firstTrain, "HH:mm").subtract(1, "years");
+  //var for current time using moment to capture the users current time
+  currentTime = moment().format("HH:mm");
+  console.log("Current Time: " + currentTime);
+  //converts to minutes
+  timeDiff = moment().diff(moment(trainTimeConverted), "minutes");
+  console.log("Time remaining: " + timeDiff);
+  // shadi gave me this hint to use lol
+  timeRemainder = timeDiff % trainFrequency;
+  console.log("Remaining Time: " + timeRemainder);
+  // trainFreq - timeRemainder math to show how many minutes away the train is based on the users current time and the tike entered for the first train
+  minAway = trainFrequency - timeRemainder;
+  console.log(minAway);
 
   console.log(trainName);
   console.log(trainDestination);
@@ -92,11 +107,14 @@ database.ref().on("child_added", function(childSnapshot) {
   var firstTrainTime = moment.unix(firstTrain).format("HH:mm");
   console.log(firstTrainTime);
 
+  //setting a var of new row to append rows and columns in the html table
   var newRow = $("<tr>").append(
     $("<td>").text(trainName),
     $("<td>").text(trainDestination),
+    //$("<td>").text(currentTime),
+    $("<td>").text(trainFrequency + " mins"),
     $("<td>").text(firstTrainTime),
-    $("<td>").text(trainFrequency)
+    $("<td>").text(minAway + " mins")
   );
 
   // Append the new row to the table
